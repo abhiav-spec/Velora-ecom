@@ -11,9 +11,12 @@ const CategoryProduct = () => {
   const category = params.category
   const navigate = useNavigate()
 
+  // API base URL - uses proxy in dev, direct URL in production
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const getFilterData = async () => {
     try {
-      const res = await axios.get(`/api/products/category/${category}`)
+      const res = await axios.get(`${API_URL}/products/category/${category}`)
       const data = res.data
       setSearchData(data)
 

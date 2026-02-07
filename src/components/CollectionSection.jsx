@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from './ProductCard';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-const CollectionSection = ({ title, products }) => {
+const CollectionSection = ({ title, products, category }) => {
     const SamplePrevArrow = (props) => {
         const { className, style, onClick } = props;
         return (
@@ -70,10 +71,13 @@ const CollectionSection = ({ title, products }) => {
                         </h2>
                         <div className="h-1.5 w-24 bg-red-500 rounded-full" />
                     </div>
-                    <button className="group flex items-center gap-3 px-8 py-3 text-xs font-black uppercase tracking-[0.2em] border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-500 rounded-full active:scale-95 shadow-[0_0_15px_rgba(239,68,68,0.1)] hover:shadow-[0_0_25px_rgba(239,68,68,0.4)]">
+                    <Link
+                        to={`/category/${category}`}
+                        className="group flex items-center gap-3 px-8 py-3 text-xs font-black uppercase tracking-[0.2em] border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-500 rounded-full active:scale-95 shadow-[0_0_15px_rgba(239,68,68,0.1)] hover:shadow-[0_0_25px_rgba(239,68,68,0.4)]"
+                    >
                         View All
                         <AiOutlineArrowRight className="text-lg group-hover:translate-x-2 transition-transform duration-500" />
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="relative product-slider">

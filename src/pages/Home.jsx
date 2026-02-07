@@ -33,10 +33,10 @@ const Home = () => {
       <Category />
 
       <div className="py-10">
-        <CollectionSection title="Men's" products={mensClothing} />
-        <CollectionSection title="Women's" products={womensClothing} />
-        <CollectionSection title="Jewellery" products={jewelery} />
-        <CollectionSection title="Electronics" products={electronics} />
+        <CollectionSection title="Men's" products={mensClothing} category="men's clothing" />
+        <CollectionSection title="Women's" products={womensClothing} category="women's clothing" />
+        <CollectionSection title="Jewellery" products={jewelery} category="jewelery" />
+        <CollectionSection title="Electronics" products={electronics} category="electronics" />
       </div>
 
       <MidBanner />

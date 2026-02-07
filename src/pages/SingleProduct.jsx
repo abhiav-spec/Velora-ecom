@@ -13,9 +13,12 @@ const SingleProduct = () => {
 
     const [quantity, setQuantity] = useState(1);
 
+    // API base URL - uses proxy in dev, direct URL in production
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const getSingleProduct = async () => {
         try {
-            const res = await axios.get(`/api/products/${params.id}`)
+            const res = await axios.get(`${API_URL}/products/${params.id}`)
             const product = res.data;
             setSingleProduct(product)
             console.log(product);
