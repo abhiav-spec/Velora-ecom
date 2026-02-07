@@ -32,11 +32,12 @@ const CategoryProduct = () => {
   }, [])
 
   return (
-    <div>
+    <div className='min-h-screen bg-white dark:bg-black transition-colors duration-500'>
       {
         searchData.length > 0 ? (
-          <div className='max-w-6xl mx-auto mt-10 mb-10 px-4'>
-            <button onClick={() => navigate('/')} className='bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center'><ChevronLeft /> Back</button>
+          <div className='max-w-6xl mx-auto pt-10 pb-10 px-4'>
+            <button onClick={() => navigate('/')} className='bg-gray-800 dark:bg-zinc-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center hover:bg-gray-700 dark:hover:bg-zinc-700 transition-colors'><ChevronLeft /> Back</button>
+            <h1 className='text-2xl font-bold text-gray-900 dark:text-white mb-6 capitalize'>{category}</h1>
             {
               searchData.map((product, index) => {
                 return <ProductListView key={index} product={product} />
