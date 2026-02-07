@@ -26,17 +26,32 @@ const App = () => {
 
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
       try {
-        const location = await axios.get(url)
-        const exactLocation = location.data.address
+        // IMPORTANT: Nominatim requires a User-Agent header per their usage policy
+        // See: https://operations.osmfoundation.org/policies/nominatim/
+        const response = await fetch(url, {
+          headers: {
+            'User-Agent': 'Velora-Ecommerce-App/1.0 (contact@velora.example.com)',
+            'Accept': 'application/json'
+          }
+        })
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const locationData = await response.json()
+        const exactLocation = locationData.address
         setLocation(exactLocation)
         setOpenDropdown(false)
         // console.log(exactLocation);
 
       } catch (error) {
-        console.log(error);
-
+        console.log('Geolocation error:', error);
+        // Optionally set a default location or show error to user
       }
 
+    }, (error) => {
+      console.log('Geolocation permission denied:', error);
     })
   }
 

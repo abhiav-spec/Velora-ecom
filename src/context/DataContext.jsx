@@ -6,10 +6,13 @@ export const DataContext = createContext(null);
 export const DataProvider = ({ children }) => {
     const [data, setData] = useState()
 
+    // API base URL - uses proxy in dev, direct URL in production
+    const API_URL = import.meta.env.VITE_API_URL;
+
     // fetching all products from api
     const fetchAllProducts = async () => {
         try {
-            const res = await axios.get('/api/products?limit=150')
+            const res = await axios.get(`${API_URL}/products?limit=150`)
             console.log(res);
             const productsData = res.data
             setData(productsData)
