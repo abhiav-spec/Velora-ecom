@@ -20,39 +20,64 @@ const App = () => {
   const { cartItem, setCartItem } = useCart()
 
   const getLocation = async () => {
-    navigator.geolocation.getCurrentPosition(async pos => {
-      const { latitude, longitude } = pos.coords
-      // console.log(latitude, longitude);
+    // Check if geolocation is supported
+    if (!navigator.geolocation) {
+      console.log('Geolocation is not supported by this browser');
+      return;
+    }
 
-      const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-      try {
-        // IMPORTANT: Nominatim requires a User-Agent header per their usage policy
-        // See: https://operations.osmfoundation.org/policies/nominatim/
-        const response = await fetch(url, {
-          headers: {
-            'User-Agent': 'Velora-Ecommerce-App/1.0 (contact@velora.example.com)',
-            'Accept': 'application/json'
+    const options = {
+      enableHighAccuracy: false, // Set to false for faster response
+      timeout: 10000, // 10 second timeout
+      maximumAge: 300000 // Cache location for 5 minutes
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords
+
+        const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        try {
+          const response = await fetch(url, {
+            headers: {
+              'User-Agent': 'Velora-Ecommerce-App/1.0 (contact@velora.example.com)',
+              'Accept': 'application/json'
+            }
+          })
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
           }
-        })
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          const locationData = await response.json()
+          const exactLocation = locationData.address
+          setLocation(exactLocation)
+          setOpenDropdown(false)
+
+        } catch (error) {
+          console.log('Geolocation API error:', error);
+          // Silent fail - location is optional feature
         }
-
-        const locationData = await response.json()
-        const exactLocation = locationData.address
-        setLocation(exactLocation)
-        setOpenDropdown(false)
-        // console.log(exactLocation);
-
-      } catch (error) {
-        console.log('Geolocation error:', error);
-        // Optionally set a default location or show error to user
-      }
-
-    }, (error) => {
-      console.log('Geolocation permission denied:', error);
-    })
+      },
+      (error) => {
+        // Handle different error codes gracefully
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            console.log('User denied location permission');
+            break;
+          case error.POSITION_UNAVAILABLE:
+            console.log('Location information unavailable');
+            break;
+          case error.TIMEOUT:
+            console.log('Location request timed out');
+            break;
+          default:
+            console.log('Unknown location error:', error.message);
+        }
+        // App continues to work without location
+      },
+      options
+    );
   }
 
   useEffect(() => {

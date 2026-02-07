@@ -44,6 +44,10 @@ const Carousel = () => {
         pauseOnHover: false,
         nextArrow: <SampleNextArrow to="next" />,
         prevArrow: <SamplePrevArrow to="prev" />,
+        // Accessibility settings to prevent aria-hidden focus issues
+        accessibility: true,
+        focusOnSelect: false,
+        swipe: true,
     };
 
     return (

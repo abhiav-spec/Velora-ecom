@@ -34,6 +34,10 @@ const CollectionSection = ({ title, products, category }) => {
         initialSlide: 0,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
+        // Accessibility settings
+        accessibility: true,
+        focusOnSelect: false,
+        swipe: true,
         responsive: [
             {
                 breakpoint: 1024,
