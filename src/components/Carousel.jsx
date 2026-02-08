@@ -20,7 +20,7 @@ const Carousel = () => {
         const { className, style, onClick } = props;
         return (
             <div onClick={onClick} className={`arrow ${className}`} style={{ zIndex: 3 }}>
-                <AiOutlineArrowLeft className='arrows' style={{ ...style, display: "block", borderRadius: "50px", background: "#f53347", color: "white", position: "absolute", padding: "2px", left: "50px" }} />
+                <AiOutlineArrowLeft className='arrows hidden md:block' style={{ ...style, display: "block", borderRadius: "50px", background: "#f53347", color: "white", position: "absolute", padding: "2px", left: "20px" }} />
             </div>
         )
     }
@@ -28,7 +28,7 @@ const Carousel = () => {
         const { className, style, onClick } = props;
         return (
             <div onClick={onClick} className={`arrow ${className}`}>
-                <AiOutlineArrowRight className='arrows' style={{ ...style, display: "block", borderRadius: "50px", background: "#f53347", color: "white", position: "absolute", padding: "2px", right: "50px" }} />
+                <AiOutlineArrowRight className='arrows hidden md:block' style={{ ...style, display: "block", borderRadius: "50px", background: "#f53347", color: "white", position: "absolute", padding: "2px", right: "20px" }} />
             </div>
         )
     }

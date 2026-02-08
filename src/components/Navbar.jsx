@@ -35,9 +35,9 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
                         <FaCaretDown onClick={toggleDropdown} />
                     </div>
                     {
-                        openDropdown ? <div className='w-[250px] h-max shadow-2xl z-50 bg-white dark:bg-black fixed top-16 left-60 border-2 p-5 border-gray-100 dark:border-gray-700 rounded-md'>
-                            <h1 className='font-semibold mb-4 text-xl flex justify-between dark:text-white'>Change Location <span onClick={toggleDropdown}><CgClose /></span></h1>
-                            <button onClick={getLocation} className='bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-red-400'>Detect my location</button>
+                        openDropdown ? <div className='w-[280px] max-w-[90vw] h-max shadow-2xl z-50 bg-white dark:bg-black fixed top-16 left-4 md:left-60 border-2 p-5 border-gray-100 dark:border-gray-700 rounded-md'>
+                            <h1 className='font-semibold mb-4 text-xl flex justify-between dark:text-white'>Change Location <span onClick={toggleDropdown} className='cursor-pointer hover:text-red-500 transition-colors'><CgClose /></span></h1>
+                            <button onClick={getLocation} className='bg-red-500 text-white px-3 py-2 rounded-md cursor-pointer hover:bg-red-400 w-full'>Detect my location</button>
                         </div> : null
                     }
                 </div>
@@ -76,9 +76,9 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
                         </SignedIn>
                     </div>
                     {
-                        openNav ? <HiMenuAlt3 onClick={() => setOpenNav(false)} className='h-7 w-7 md:hidden' /> : <HiMenuAlt1
+                        openNav ? <HiMenuAlt3 onClick={() => setOpenNav(false)} className='h-7 w-7 md:hidden dark:text-white cursor-pointer' /> : <HiMenuAlt1
                             onClick={() => setOpenNav(true)}
-                            className='h-7 w-7 md:hidden' />
+                            className='h-7 w-7 md:hidden dark:text-white cursor-pointer' />
                     }
                 </nav>
             </div>

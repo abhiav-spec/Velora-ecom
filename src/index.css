@@ -23,18 +23,43 @@ html.dark {
   color: #ffffff;
 }
 
-/* clerk user button adjust */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
 
+/* Better mobile touch experience */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* clerk user button adjust */
 .cl-avatarBox {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .cl-avatarBox {
+    width: 3rem;
+    height: 3rem;
+  }
 }
 
 /* carousel arrow  */
 .arrows {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   margin: 1px;
+}
+
+@media (min-width: 768px) {
+  .arrows {
+    height: 40px;
+    width: 40px;
+  }
 }
 
 /* input colours */
@@ -43,10 +68,32 @@ input {
   accent-color: red;
   border: 1px solid #ccc;
   color: #333;
+  font-size: 16px;
+  /* Prevents zoom on mobile iOS */
 }
 
 .dark input {
   background-color: #374151;
   border-color: #4b5563;
   color: #f3f4f6;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 767px) {
+
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fix for slick carousel on mobile */
+  .slick-slide {
+    padding: 0 4px;
+  }
+
+  .slick-list {
+    margin: 0 -4px;
+  }
 }
