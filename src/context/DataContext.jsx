@@ -15,7 +15,18 @@ export const DataProvider = ({ children }) => {
             const res = await axios.get(`${API_URL}/products?limit=150`)
             console.log(res);
             const productsData = res.data
-            setData(productsData)
+
+            // Duplicate products to create more pages (5x = ~100 products = 13 pages)
+            const multipliedData = []
+            for (let i = 0; i < 5; i++) {
+                productsData.forEach((product, index) => {
+                    multipliedData.push({
+                        ...product,
+                        id: product.id + (i * 1000) // Unique ID for each duplicate
+                    })
+                })
+            }
+            setData(multipliedData)
 
         } catch (error) {
             console.log(error);
